@@ -28,7 +28,7 @@ const LoginForm = () => {
         else if(response.data[0].category==='customer'){
           sessionStorage.setItem("cid",response.data[0].username);
           sessionStorage.setItem("cusid",response.data[0].cusid)
-          navigate('/cusnav');
+          navigate('/cushome');
         }
         
         else if(response.data[0].category==='admin'){

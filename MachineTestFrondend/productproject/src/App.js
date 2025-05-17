@@ -17,6 +17,7 @@ import CustomerProductView from "./Product/CustomerProductView";
 import LoginForm from "./Product/LoginForm";
 import Register from "./Product/Register";
 import CustomerWishlist from "./Product/CustomerWishlist";
+import CustomerHome from "./Product/CustomerHome";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
         <Route path="/addsubcategory" element={<SubCategoryAdd/>} />
 
         <Route path="/cusnav" element={<CustomerNav/>} />
+        <Route path="/cushome" element={<CustomerHome/>} />
         <Route path="/viewcustomercategorie" element={<CustomerViewCategorie/>} />
         <Route path="/cussubcategoriesview" element={<CustomerViewSubcategorie/>} />
         <Route path="/cusproductview" element={<CustomerProductView/>} />
