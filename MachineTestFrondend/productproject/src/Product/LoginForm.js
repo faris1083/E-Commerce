@@ -46,7 +46,7 @@ const LoginForm = () => {
   return (
     <div className="main">
             <div className="form-container">
-                <h2>ADD PRODUCT</h2>
+                <h2>LOGIN</h2>
                 <div className="form-container-inner">
                     <form>
                         <label><b>UserName</b></label>
