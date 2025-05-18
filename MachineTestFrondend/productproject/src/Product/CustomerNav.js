@@ -1,8 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React,{useEffect} from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import './ProductForm.css';
 
 const CustomerNav = () => {
+  const navigate=useNavigate()
+
+  useEffect(() => {
+  
+          let session = sessionStorage.getItem("cid")
+      
+          if (session == null) {
+              navigate('/')
+          }
+  
+      }, []);
   return (
     <div>
         <nav className="navbar">

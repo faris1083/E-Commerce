@@ -22,6 +22,14 @@ const CustomerProductView = () => {
     const custid=sessionStorage.getItem('cusid')
 
     useEffect(() => {  
+       let session = sessionStorage.getItem("cid")
+      
+          if (session == null) {
+              nav('/')
+          }
+
+
+
         axios.get('http://127.0.0.1:8000/product/productviewbyid/'+pid+'/')
             .then(response => setProduct(response.data))
     }, []);

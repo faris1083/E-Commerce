@@ -15,6 +15,14 @@ const CustomerViewSubcategorie = () => {
     const cid=loc.state.value
     console.log(cid)
     useEffect(() => {
+       let session = sessionStorage.getItem("cid")
+      
+          if (session == null) {
+              nav('/')
+          }
+
+
+
     if (cid) {
       axios.get('http://127.0.0.1:8000/product/subcateviewbyid/' + cid + '/')
       
@@ -47,10 +55,10 @@ const CustomerViewSubcategorie = () => {
                     >
     
                         <Meta
-                              title={<div style={{ textAlign: "center", fontWeight: "bold", fontSize: "18px" }}>{data.name}</div>}
+                              title={<div style={{ textAlign: "center", fontWeight: "bold", fontSize: "18px" }}>SubCategories</div>}
                             description={
                                 <div style={{ textAlign: "center", fontSize: "14px", marginTop: "10px" }}>
-                                    {/* <p><b> Name:</b> </p> */}
+                                    <p><b> Name:{data.name}</b> </p>
                                     
                                 </div>
                             }

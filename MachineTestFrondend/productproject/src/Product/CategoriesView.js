@@ -3,6 +3,7 @@ import axios from "axios";
 import { Card } from "antd";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Flex } from 'antd';
+import AdminNav from './AdminNav';
 const { Meta } = Card;
 
 const CategoriesView = () => {
@@ -12,6 +13,14 @@ const CategoriesView = () => {
     
 
     useEffect(() => {  
+
+        let session = sessionStorage.getItem("aid")
+        
+            if (session == null) {
+                nav('/')
+            }
+
+
         axios.get('http://127.0.0.1:8000/product/categoryview/')
             .then(response =>setval(response.data))
     }, []);
@@ -21,6 +30,7 @@ const CategoriesView = () => {
     }
   return (
     <div>
+        <AdminNav/>
         <div style={{display:'flex',justifyContent:'flex-start',gap:'10px',marginTop:'50px'}}>
         {val.map((data) => (
                 <Card

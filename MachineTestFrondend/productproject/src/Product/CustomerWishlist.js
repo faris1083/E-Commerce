@@ -3,14 +3,24 @@ import axios from 'axios'
 import {  Space, Button, message } from 'antd';
 import CustomerNav from './CustomerNav';
 import { Card, Carousel } from "antd";
+import { useNavigate } from 'react-router-dom';
 
  
 const { Meta } = Card;
 
 const CustomerWishlist = () => {
     const[product,setProduct]=useState([])
+    const navigate=useNavigate()
 
      useEffect(() => {  
+       let session = sessionStorage.getItem("cid")
+      
+          if (session == null) {
+              navigate('/')
+          }
+
+
+
         axios.get('http://127.0.0.1:8000/product/wishlistget/')
             .then(response => setProduct(response.data))
     }, []);

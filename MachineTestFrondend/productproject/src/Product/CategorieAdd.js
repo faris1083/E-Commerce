@@ -1,10 +1,22 @@
-import React, { useState} from 'react'
+import React, { useState,useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
+import AdminNav from './AdminNav';
 
 const CategorieAdd = () => {
     const nav=useNavigate()
     const[categorie,setCategorie]=useState({name:''})
+
+
+    useEffect(() => {
+        
+                let session = sessionStorage.getItem("aid")
+            
+                if (session == null) {
+                    nav('/')
+                }
+        
+            }, []);
 
     const handlechange=(e)=>{
         setCategorie({...categorie,[e.target.name]:e.target.value})
@@ -20,6 +32,7 @@ const CategorieAdd = () => {
   }
   return (
     <div>
+        <AdminNav/>
         <div className="main">
             <div className="form-container">
                 <h2>ADD CATEGORIES</h2>

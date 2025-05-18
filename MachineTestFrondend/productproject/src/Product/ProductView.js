@@ -2,11 +2,20 @@ import React, { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { Table, Space, Button, message } from 'antd';
+import AdminNav from './AdminNav';
 const ProductView = () => {
     const nav=useNavigate()
     const[product,setProduct]=useState([])
 
     useEffect(() => {  
+       let session = sessionStorage.getItem("aid")
+    
+        if (session == null) {
+            nav('/')
+        }
+
+
+
         axios.get('http://127.0.0.1:8000/product/productview/')
             .then(response => setProduct(response.data))
     }, []);
@@ -17,6 +26,8 @@ const ProductView = () => {
     });
     }
   return (
+    <div>
+      <AdminNav/>
     <div>
         <Table dataSource={product} rowKey="id" bordered>
       <Table.Column title="ID" dataIndex="id" key="id" />
@@ -39,7 +50,7 @@ const ProductView = () => {
           )}
         />
     </Table>
-    </div>
+    </div></div>
   )
 }
 

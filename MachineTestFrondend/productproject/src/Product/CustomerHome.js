@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React,{useEffect} from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import './ProductForm.css';
 
 import Slider from 'react-slick';
@@ -9,6 +9,17 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const CustomerHome = () => {
+
+  const navigate=useNavigate()
+  useEffect(() => {
+    
+            let session = sessionStorage.getItem("cid")
+        
+            if (session == null) {
+                navigate('/')
+            }
+    
+        }, []);
 
     const settings = {
   dots: true,
@@ -35,13 +46,13 @@ const CustomerHome = () => {
       <div style={{width:'1300px',marginLeft:'150px',marginTop:'40px'}}>
       <Slider {...settings}>
               <div>
-                <img src={require('../img/images1.jpeg')}  className="slider-img" style={{ width: '100%', height: '600px', objectFit: 'cover' }}/>
+                <img src={require('../img/img4.jpg')}  className="slider-img" style={{ width: '100%', height: '600px', objectFit: 'cover',borderRadius:'8px' }}/>
               </div>
               <div>
-                <img src={require('../img/image2.jpeg')}  className="slider-img" style={{ width: '100%', height: '600px', objectFit: 'cover' }}/>
+                <img src={require('../img/img5.jpg')}  className="slider-img" style={{ width: '100%', height: '600px', objectFit: 'cover' ,borderRadius:'8px'}}/>
               </div>
               <div>
-                <img src={require('../img/image3.jpeg')}  className="slider-img" style={{ width: '100%', height: '600px', objectFit: 'cover' }}/>
+                <img src={require('../img/img6.jpg')}  className="slider-img" style={{ width: '100%', height: '600px', objectFit: 'cover' ,borderRadius:'8px'}}/>
               </div>
             </Slider></div>
     </div>

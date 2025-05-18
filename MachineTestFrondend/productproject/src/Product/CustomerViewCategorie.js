@@ -13,6 +13,14 @@ const CustomerViewCategorie = () => {
     
 
     useEffect(() => {  
+         let session = sessionStorage.getItem("cid")
+      
+          if (session == null) {
+              nav
+              ('/')
+          }
+
+
         axios.get('http://127.0.0.1:8000/product/categoryview/')
             .then(response =>setval(response.data))
     }, []);

@@ -1,6 +1,7 @@
 import React, { useState,useEffect} from 'react'
 import axios from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom';
+import AdminNav from './AdminNav';
 
 const ProductEdit = () => {
     const loc=useLocation()
@@ -14,6 +15,17 @@ const ProductEdit = () => {
         price: loc.state.price,
         quantity: loc.state.quantity,
     })
+
+
+    useEffect(() => {
+    
+            let session = sessionStorage.getItem("aid")
+        
+            if (session == null) {
+                navigate('/')
+            }
+    
+        }, []);
 
     const handlechange=(e)=>{
         setData({...data,[e.target.name]:e.target.value})
@@ -30,6 +42,8 @@ const ProductEdit = () => {
 
 
   return (
+    <div>
+        <AdminNav/>
     <div className="main">
             <div className="form-container">
                 <h2>ADD PRODUCT</h2>
@@ -59,7 +73,7 @@ const ProductEdit = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </div></div>
   )
 }
 

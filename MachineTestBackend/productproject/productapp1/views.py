@@ -7,7 +7,10 @@ from django.http import JsonResponse
 
 
 # Create your views here.
-# 
+
+
+
+# insert data into login table
 @csrf_exempt
 def logindetails(request):
     username=request.GET.get('username')
@@ -37,7 +40,7 @@ def logindetails(request):
 
 
 
-
+# insert data into customer table
 @csrf_exempt
 def cus_registration(request):
     data = json.loads(request.body)
@@ -67,7 +70,7 @@ def cus_registration(request):
     
         return JsonResponse({'message':'item is created'})
 
-
+# insert data into customer table
 @csrf_exempt
 def categoryinsert(request):
     data = json.loads(request.body)
@@ -77,6 +80,9 @@ def categoryinsert(request):
 
     return JsonResponse({'message':'item is created'})
 
+
+
+# to view data in category table
 @csrf_exempt
 def categoryview(request):
     data=Category.objects.all()
@@ -86,7 +92,7 @@ def categoryview(request):
     return JsonResponse(item_list,safe=False)
 
 
-
+# insert data into subcategory table
 @csrf_exempt
 def subcategoryinsert(request):
     data = json.loads(request.body)
@@ -98,8 +104,16 @@ def subcategoryinsert(request):
     
     return JsonResponse({'message':'item is created'})
 
+# to view data in subcategory table
+@csrf_exempt
+def subcategoryview(request):
+    data=SubCategory.objects.all()
+
+    item_list=[{"id":item.id,"name":item.name,"category_id":item.category_id.name}for item in data ]
+    return JsonResponse(item_list,safe=False)
 
 
+# to view data from subcategory using an id
 @csrf_exempt
 def subcategoryviewbyid(request,id):
     data1=SubCategory.objects.filter(category_id=id)
@@ -111,7 +125,7 @@ def subcategoryviewbyid(request,id):
 
 
 
-
+# product table insertion
 @csrf_exempt
 def productinsert(request):
     # data = json.loads(request.body)
@@ -133,7 +147,7 @@ def productinsert(request):
     
     return JsonResponse({'message':'item is created'})
 
-
+# get data from product table
 @csrf_exempt
 def productview(request):
     data=Product.objects.all()
@@ -146,7 +160,7 @@ def productview(request):
 
 
 
-
+# to view data from product using an id
 @csrf_exempt
 def productviewbyid(request,id):
     data1=Product.objects.filter(subcategory_id=id)
@@ -157,7 +171,7 @@ def productviewbyid(request,id):
     return JsonResponse(item,safe=False)
 
 
-
+# product data get with an id
 @csrf_exempt
 def productviewget(request,id):
     data1=Product.objects.get(id=id)
@@ -165,7 +179,7 @@ def productviewget(request,id):
     return JsonResponse({"id":data1.id,"name":data1.name,"description":data1.description,"subcategory_id":data1.subcategory_id.id,
                 "ram":data1.ram,"price":data1.price,"quantity":data1.quantity},safe=False)
 
-
+# edit/update product table data
 @csrf_exempt
 def productedit(request,id):
     data2=Product.objects.get(id=id)
@@ -189,7 +203,7 @@ def productedit(request,id):
 
 
 
-
+# to search a product with a name
 @csrf_exempt
 def search(request,name):
     data1=Product.objects.filter(name=name)
@@ -199,13 +213,13 @@ def search(request,name):
     return JsonResponse(item,safe=False)
 
 
-
+# to add product id and customer id to whishlist
 @csrf_exempt
 def wishlist(request,cid,pid):
     data2=Product.objects.get(id=pid)
     data3=customer.objects.get(id=cid)
 
-    print(type(data3.id),'aaaaaaaaaaaaaaaaaaaaaaaa')
+    # print(type(data3.id),'aaaaaaaaaaaaaaaaaaaaaaaa')
     
     item=Wishlist.objects.create(customer_id=data3.id,
                                  product_id=data2.id)
@@ -213,7 +227,7 @@ def wishlist(request,cid,pid):
 
     return JsonResponse({"message":"Order created successfully"})
 
-
+# get data from whishlist table
 @csrf_exempt
 def wishlistget(request):
     data=Wishlist.objects.all()

@@ -2,26 +2,13 @@ import React,{useState,useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './ProductForm.css';
 
-const Mainpage = () => {
+const AdminNav = () => {
     const [showDropdown, setShowDropdown] = useState(false);
-
-  const toggleDropdown = () => setShowDropdown(prev => !prev);
-
-  const navigate=useNavigate()
-
-  useEffect(() => {
-
-        let session = sessionStorage.getItem("aid")
     
-        if (session == null) {
-            navigate('/')
-        }
-
-    }, []);
-
+      const toggleDropdown = () => setShowDropdown(prev => !prev);
   return (
-   <>
-      <nav className="navbar">
+    <div>
+        <nav className="navbar">
         <div className="navbar-brand">Product Manager</div>
         <div className="navbar-links">
           
@@ -43,15 +30,8 @@ const Mainpage = () => {
           
         </div>
       </nav>
+    </div>
+  )
+}
 
-      <div className="home-content">
-        <div className="welcome-card">
-          <h1>Welcome to Product Manager</h1>
-          <p>Manage your categories, products, and variants with ease.</p>
-        </div>
-      </div>
-    </>
-  );
-};
-
-export default Mainpage;
+export default AdminNav

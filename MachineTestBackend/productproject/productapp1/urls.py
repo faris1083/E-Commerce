@@ -8,6 +8,7 @@ urlpatterns=[
     path("category/",views.categoryinsert,name="pro-list"),
     path("categoryview/",views.categoryview,name="pro-list"),
     path("subcategory/",views.subcategoryinsert,name="pro-list"),
+    path("subcateview/",views.subcategoryview,name="pro-list"),
     path("subcateviewbyid/<int:id>/",views.subcategoryviewbyid,name="pro-list"),
 
 
